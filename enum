@@ -9,6 +9,8 @@ nmap --open -p 8080 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > web8080-ho
 nmap --open -p 3389 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > rdp-hosts.txt &
 nmap --open -open -p 139,445,3389 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > win-hosts.txt &
 
+
+#winblows enums
 // nbt info
 nbtscan -f win-hosts.txt
 // smb basics
@@ -17,3 +19,7 @@ smbmap --host-file {absolute-path-to-smbhosts.txt}
 cat win-hosts.txt | xargs -L1 rpcclient -U '' -c 'srvinfo' -N
 cat win-hosts.txt | xargs -L1 rpcclient -U '' -c 'enumdomusers' -N
 cat win-hosts.txt | xargs -L1 rpcclient -U '' -c 'enumdomgroups' -N
+
+#DNS enums
+//forloop dns enum
+cat win-hosts.txt | xargs -L 1 -I {} dnsrecon -r 10.11.1.0/24 --lifetime 3 -t std,srv,axfr,goo,bing,crt,snoop -n {}  > dnsrecon-out.txt &
