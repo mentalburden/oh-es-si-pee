@@ -1,4 +1,4 @@
-nmap -sn 10.11.1.0/24 -oG - | awk '/Up$/{print $2}' > livehosts.txt
+nmap -sn {target ip range here/subnet} -oG - | awk '/Up$/{print $2}' > livehosts.txt
 
 nmap --open -p 22 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > ssh-hosts.txt &
 nmap --open -p 23 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > telnet-hosts.txt &
