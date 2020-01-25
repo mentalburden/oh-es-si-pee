@@ -9,6 +9,8 @@ nmap --open -p 8080 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > web8080-ho
 nmap --open -p 3389 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > rdp-hosts.txt &
 nmap --open -open -p 139,445,3389 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > win-hosts.txt &
 
+// nbt info
+nbtscan -f win-hosts.txt
 // smb basics
 smbmap --host-file {absolute-path-to-smbhosts.txt}
 // rpcclient looper
