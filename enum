@@ -21,5 +21,7 @@ cat win-hosts.txt | xargs -L1 rpcclient -U '' -c 'enumdomusers' -N
 cat win-hosts.txt | xargs -L1 rpcclient -U '' -c 'enumdomgroups' -N
 
 #DNS enums
+//build dns list
+nmap --open -p 53 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > dns-hosts.txt
 //forloop dns enum
 cat win-hosts.txt | xargs -L 1 -I {} dnsrecon -r 10.11.1.0/24 --lifetime 3 -t std,srv,axfr,goo,bing,crt,snoop -n {}  > dnsrecon-out.txt &
