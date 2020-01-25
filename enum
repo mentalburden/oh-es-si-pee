@@ -8,3 +8,8 @@ nmap --open -p 443 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > web443-host
 nmap --open -p 8080 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > web8080-hosts.txt &
 nmap --open -p 3389 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > rdp-hosts.txt &
 nmap --open -open -p 139,445,3389 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > win-hosts.txt &
+
+// smb basics
+smbmap --host-file {absolute-path-to-smbhosts.txt}
+// rpcclient looper
+cat win-hosts.txt | xargs -L1 rpcclient -U '' -c 'srvinfo' -N
