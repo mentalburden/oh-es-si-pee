@@ -13,3 +13,5 @@ nmap --open -open -p 139,445,3389 -iL livehosts.txt -oG - | awk '/Up$/{print $2}
 smbmap --host-file {absolute-path-to-smbhosts.txt}
 // rpcclient looper
 cat win-hosts.txt | xargs -L1 rpcclient -U '' -c 'srvinfo' -N
+cat win-hosts.txt | xargs -L1 rpcclient -U '' -c 'enumdomusers' -N
+cat win-hosts.txt | xargs -L1 rpcclient -U '' -c 'enumdomgroups' -N
