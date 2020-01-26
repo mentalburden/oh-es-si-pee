@@ -53,3 +53,15 @@ nmap -p 21 --script=ftp-anon.nse -iL ftp-hosts.txt
 #noiser but better
 nmap -p 21 -sV -sC --script=ftp-syst -iL ftp-hosts.txt 
 
+
+#########################################
+#LLMNR/NBT-trash enums, watch these in a seperate tab for low hanging fruit
+#basic inspection for noisy domains
+responder -A -i tap0/eth0/zt+/whatever
+#wpad (old af) and ntlm downgrade responder
+responder -i tap0 -wF -lm 
+
+
+
+
+
