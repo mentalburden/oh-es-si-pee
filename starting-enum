@@ -1,6 +1,6 @@
 
 nmap -sn {target ip range here/subnet} -oG - | awk '/Up$/{print $2}' > livehosts.txt
-
+nmap --open -p 21 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > ftp-hosts.txt &
 nmap --open -p 22 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > ssh-hosts.txt &
 nmap --open -p 23 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > telnet-hosts.txt &
 nmap --open -p 25 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > smtp-hosts.txt &
@@ -47,6 +47,8 @@ onesixtyone -c /usr/share/wordlists/snmp-wordlist.txt -i livehosts.txt
 smbmap -H IP
 cat ../smb-hosts.txt | xargs -L 1 -I {} smbmap -u chonker -p 5150kitten -H {}
 
-
+########################################
+#ftp enums
+nmap -p 21 --script=ftp-anon.nse -iL ftp-hosts.txt
 
 
