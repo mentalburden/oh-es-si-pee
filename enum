@@ -37,4 +37,4 @@ cat win-hosts.txt | xargs -L 1 -I {} dnsrecon -r 10.11.1.0/24 --lifetime 3 -t st
 cat livehosts.txt | xargs -L 1 -I {} snmpwalk -c public -v1 {} > snmpwalk-out.txt &
 //below runs cleaner, but above gives more juice
 cat livehosts.txt | xargs -L 1 -I {} snmpget -v 2c -c public {}  .1.3.6.1.2.1.1.5.0 >snmpget-out.txt &
-nmap --open -p 8080 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > web8080-hosts.txt &
+onesixtyone -c /usr/share/wordlists/snmp-wordlist.txt -i livehosts.txt
