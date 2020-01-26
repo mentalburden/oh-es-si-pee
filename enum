@@ -1,3 +1,4 @@
+
 nmap -sn {target ip range here/subnet} -oG - | awk '/Up$/{print $2}' > livehosts.txt
 
 nmap --open -p 22 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > ssh-hosts.txt &
@@ -10,6 +11,7 @@ nmap --open -p 3389 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > rdp-hosts.
 nmap --open -open -p 139,445,3389 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > win-hosts.txt &
 
 
+########################################
 #winblows enums
 // nbt info
 nbtscan -f win-hosts.txt
@@ -19,7 +21,11 @@ smbmap --host-file {absolute-path-to-smbhosts.txt}
 cat win-hosts.txt | xargs -L1 rpcclient -U '' -c 'srvinfo' -N
 cat win-hosts.txt | xargs -L1 rpcclient -U '' -c 'enumdomusers' -N
 cat win-hosts.txt | xargs -L1 rpcclient -U '' -c 'enumdomgroups' -N
+// rpc/nfs combo
+nmap -p 111,1048,1049,2048,2049 -sV --script=nfs-showmount -iL win-hosts.txt
 
+
+########################################
 #DNS enums
 //build dns list
 nmap --open -p 53 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > dns-hosts.txt
