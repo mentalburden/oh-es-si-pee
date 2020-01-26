@@ -31,3 +31,7 @@ nmap -p 111,1048,1049,2048,2049 -sV --script=nfs-showmount -iL win-hosts.txt
 nmap --open -p 53 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > dns-hosts.txt
 //forloop dns enum
 cat win-hosts.txt | xargs -L 1 -I {} dnsrecon -r 10.11.1.0/24 --lifetime 3 -t std,srv,axfr,goo,bing,crt,snoop -n {}  > dnsrecon-out.txt &
+
+########################################
+#snmp enums
+cat livehosts.txt | xargs -L 1 -I {} snmpwalk -c public -v1 {} > snmpwalk-out.txt &
