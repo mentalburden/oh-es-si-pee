@@ -7,3 +7,4 @@ Use the .zip in the repo, it works.
 
 git clone https://github.com/mez-0/MS17-010-Python
 	-As of 25JAN20, need to add global var to zzz_exploit.py, just add "  domain = ''    " after includes
+	-Also need to add "    found_pipe = ''   " to found_pipe func, its broken in the current mez-0 version, fixed in my zip
