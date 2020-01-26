@@ -1,2 +1,0 @@
-git clone https://github.com/mez-0/MS17-010-Python
-	-As of 25JAN20, need to add global var to zzz_exploit.py, just add "  domain = ''    " after includes
