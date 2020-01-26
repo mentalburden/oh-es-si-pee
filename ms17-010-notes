@@ -1,5 +1,12 @@
-#get rpcbind hosts first
-nmap --open -p 111 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > rpcbind-win-hosts.txt &
+#####
+#
+# Exploit leverages SMB and only certain versions/patches
+# POC python code from mez-0 will throw false/pos errors, but the smbmap checker will verify if it actually worked right
+# POC works best with creds, but will also work without depending on box
+#
+#####
+#get smb hosts first
+nmap --open -p 445 -iL livehosts.txt -oG - | awk '/Up$/{print $2}' > smb-hosts.txt &
 
 Use the .zip in the repo, it works.
 
