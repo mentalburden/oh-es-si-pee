@@ -1,0 +1,13 @@
+#good for checking reverse and bind shells, useful for basic OS enum too
+schtasks /query /fo LIST /v
+net config Workstation
+systeminfo
+hostname
+whoami
+ipconfig
+net users
+ipconfig /all
+findstr /si password *.xml *.ini *.txt
+reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer\AlwaysInstallElevated
+reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer\AlwaysInstallElevated
+netsh firewall show state
