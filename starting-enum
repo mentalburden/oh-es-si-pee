@@ -69,7 +69,10 @@ responder -I tap0 -wFb
 #John sucks and is a PIA, use hashcat instead, rockyou takes <1min on a slow VM
 hashcat -m 5600 HTTP-HAS-FILE /usr/share/wordlists/rockyou.txt
 
-
+########################################
+#Begin the web crap... oh jeez @_@
+#wget/curls
+wget --user-agent="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" "$@" http://IP/some-with-header-checking-like-robots.txt
 
 
 
