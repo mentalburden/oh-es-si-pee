@@ -73,7 +73,8 @@ hashcat -m 5600 HTTP-HAS-FILE /usr/share/wordlists/rockyou.txt
 #Begin the web crap... oh jeez @_@
 #wget/curls
 wget --user-agent="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" "$@" http://IP/some-with-header-checking-like-robots.txt
-
+#ugly output, need to for loop it and add in a seperator with the IP
+cat web80-hosts.txt | xargs -L 1 -I {} curl {}/robots.txt
 
 
 
