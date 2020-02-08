@@ -76,5 +76,8 @@ wget --user-agent="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.co
 #ugly output, need to for loop it and add in a seperator with the IP
 cat web80-hosts.txt | xargs -L 1 -I {} curl {}/robots.txt
 
-
+#######################################
+#Drupal garbage
+pip install droopescan
+droopescan scan drupal -u {target}
 
