@@ -77,6 +77,14 @@ wget --user-agent="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.co
 cat web80-hosts.txt | xargs -L 1 -I {} curl {}/robots.txt
 
 #######################################
+#Cewl
+cat web80-hosts.txt | xargs -L 1 -I {} cewl --with-numbers {} >> cewl-temp.txt &
+cat web443-hosts.txt | xargs -L 1 -I {} cewl --with-numbers {} >> cewl-temp.txt &
+cat web8080-hosts.txt | xargs -L 1 -I {} cewl --with-numbers {} >> cewl-temp.txt &
+cat cewl-temp.txt | sort | uniq > cewlwordlist.txt
+
+
+#######################################
 #Drupal garbage
 pip install droopescan
 droopescan scan drupal -u {target}
